@@ -4,28 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css" />
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Pokedex</title>
   </head>
   <body onload="getReferences();">
     <header>
-      <h1>POKEMON</h1>
-      <div class="search">
-        <input
-          id="input"
-          type="text"
-          placeholder="Search pokemon by name..."
-          oninput="search()"
-        />
-      </div>
+      <nav>
+        <h1>POKEDEX</h1>
+        <div class="search">
+          <input id="input" type="text" placeholder="Search Pokemon by Name..." oninput="search()" />
+        </div>
+      </nav>
     </header>
-    <section class="disp-flex">
-      <div id="container" class="container"></div>
-      <div class="content">
-        <button onclick="loadMore()">Mehr ansehen</button>
-      </div>
-    </section>
+    <div class="align-middle">
+      <section class="disp-flex">
+        <div id="container" class="container"></div>
+      </section>
+      <footer class="content">
+        <button class="btn" onclick="loadMore()">Load more</button>
+      </footer>
 
+      <div id="glideId" class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li class="glide__slide">
+              <img id="img-current-pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png" alt="" />
+              <section class="pokemon-performances">
+                <div class="details">
+                  <button class="info-btn">Stats</button>
+                  <button class="info-btn">Types</button>
+                  <button class="info-btn">Moves</button>
+                  <button class="info-btn">Abilities</button>
+                </div>
+                <div id="canvas-container">
+                  <canvas id="myChart" height="300" width="300"></canvas>
+                </div>
+              </section>
+            </li>
+          </ul>
+        </div>
+
+        <div class="glide__arrows">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<" onclick="previousPokemon()">prev</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">" onclick="nextPokemon()">next</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="url.js"></script>
     <script src="script.js"></script>
+    <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
+    <script>
+      new Glide(".glide", {
+        focusAt: "center",
+        perView: 1,
+      }).mount();
+    </script>
   </body>
 </html>
