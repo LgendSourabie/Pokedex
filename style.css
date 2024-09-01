@@ -13,11 +13,6 @@
   box-sizing: border-box;
 }
 
-/* html {
-  font-size: 100%;
-  min-height: 100vh;
-} */
-
 :root {
   /* colors */
   --primary-100: #c5e5fc;
@@ -68,9 +63,11 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   background: silver;
+  display: flex;
+  flex-direction: column;
 }
 .align-middle {
   display: flex;
@@ -204,6 +201,10 @@ ul img {
   display: flex;
   gap: 1rem;
 }
+#align-middle {
+  flex: 1;
+  margin-bottom: 5rem;
+}
 
 .performance-label {
   font-family: "komika";
@@ -318,6 +319,10 @@ button.info-btn {
   padding-inline: 1rem;
   padding-block: 3rem;
   margin-top: 3rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .footer-container {
   display: flex;
