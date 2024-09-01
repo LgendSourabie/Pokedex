@@ -13,6 +13,9 @@
     <link rel="mask-icon" href="icons/favicons/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="msapplication-TileColor" content="#2b5797" />
     <meta name="theme-color" content="#ffffff" />
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="modules/js/glide.min.js"></script>
     <script src="modules/js/chart.umd.js"></script>
     <title>Pokedex</title>
   </head>
@@ -37,7 +40,7 @@
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             <li class="glide__slide" id="glideSlide">
-              <button class="btn-exit" id="btn-exit" onclick="exitView()"><img class="closeBtn" src="/icons/close-button.svg" alt="close" /></button>
+              <button class="btn-exit" id="btn-exit" onclick="exitView()"><img class="closeBtn" src="icons/close-button.svg" alt="close" /></button>
               <div class="top-section-info">
                 <img
                   class="img-current-pokemon"
@@ -87,10 +90,6 @@
         <div class="links" id="links"></div>
       </div>
     </footer>
-
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-    <script src="modules/js/glide.min.js"></script>
     <script>
       new Glide(".glide", {
         focusAt: "center",

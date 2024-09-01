@@ -115,12 +115,13 @@ header {
 .d-none {
   display: none;
 }
-
+.infos {
+  color: rgb(85, 26, 139);
+}
 .btn {
   cursor: pointer;
   color: var(--white);
-  /* background: var(--primary-500); */
-  background: rgb(130, 84, 230);
+  background: rgb(85, 26, 139);
   border: transparent;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
@@ -180,7 +181,7 @@ section {
 
 a:not(.removeBorder) {
   text-decoration: none;
-  border: 2px solid;
+  border: 2px solid rgb(85, 26, 139);
   border-radius: 30px;
 }
 input {
@@ -203,7 +204,7 @@ ul img {
 }
 #align-middle {
   flex: 1;
-  margin-bottom: 5rem;
+  margin-bottom: 8rem;
 }
 
 .performance-label {
@@ -318,7 +319,6 @@ button.info-btn {
   justify-content: center;
   padding-inline: 1rem;
   padding-block: 3rem;
-  margin-top: 3rem;
   position: absolute;
   left: 0;
   right: 0;
@@ -418,7 +418,11 @@ button.info-btn {
     flex-direction: column;
     gap: 1rem;
   }
+  .page-footer {
+    padding-block: 1rem;
+  }
 }
+
 @media (width<435px) {
   ul img {
     width: 135px;
