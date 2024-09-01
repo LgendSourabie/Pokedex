@@ -4,9 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css" />
-    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="modules/css/glide.core.min.css" />
+    <link rel="stylesheet" href="modules/css/glide.theme.min.css" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/favicons/android-chrome-512x512.png" />
+    <link rel="manifest" href="icons/favicons/site.webmanifest" />
+    <link rel="mask-icon" href="icons/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#2b5797" />
+    <meta name="theme-color" content="#ffffff" />
+    <script src="modules/js/chart.umd.js"></script>
     <title>Pokedex</title>
   </head>
   <body onload="getReferences();">
@@ -14,7 +21,7 @@
       <nav>
         <h1>POKEDEX</h1>
         <div class="search">
-          <input id="input" type="text" placeholder="Search Pokemon by Name..." oninput="search()" />
+          <input id="input" type="text" placeholder="Search Pokemon by Name or ID..." oninput="search()" />
         </div>
       </nav>
     </header>
@@ -29,15 +36,36 @@
       <div id="glideId" class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            <li class="glide__slide">
-              <img id="img-current-pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png" alt="" />
-              <section class="pokemon-performances">
-                <div class="details">
-                  <button class="info-btn">Stats</button>
-                  <button class="info-btn">Types</button>
-                  <button class="info-btn">Moves</button>
-                  <button class="info-btn">Abilities</button>
+            <li class="glide__slide" id="glideSlide">
+              <button class="btn-exit" id="btn-exit" onclick="exitView()"><img class="closeBtn" src="/icons/close-button.svg" alt="close" /></button>
+              <div class="top-section-info">
+                <img
+                  class="img-current-pokemon"
+                  id="img-current-pokemon"
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png"
+                  alt=""
+                />
+                <div>
+                  <div class="pokemon-characteristics">
+                    <label class="performance-label">Height: </label>
+                    <p id="height" name="height"></p>
+                  </div>
+                  <div class="pokemon-characteristics">
+                    <label class="performance-label">Weight: </label>
+                    <p id="weight" name="weight"></p>
+                  </div>
+                  <div class="pokemon-characteristics">
+                    <label class="performance-label">Types: </label>
+                    <p id="types" name="types"></p>
+                  </div>
+                  <div class="pokemon-characteristics">
+                    <label class="performance-label">Abilities: </label>
+                    <p id="abilities" name="abilities"></p>
+                  </div>
                 </div>
+              </div>
+              <section class="pokemon-performances">
+                <div class="details"></div>
                 <div id="canvas-container">
                   <canvas id="myChart" height="300" width="300"></canvas>
                 </div>
@@ -46,16 +74,23 @@
           </ul>
         </div>
 
-        <div class="glide__arrows">
+        <div class="glide__arrows" id="glideArrows">
           <button class="glide__arrow glide__arrow--left" data-glide-dir="<" onclick="previousPokemon()">prev</button>
           <button class="glide__arrow glide__arrow--right" data-glide-dir=">" onclick="nextPokemon()">next</button>
         </div>
       </div>
     </div>
+    <div class="overlay" id="overlay"></div>
+    <footer class="page-footer">
+      <div class="footer-container">
+        <p class="copyright">&copy; Ibrahima Sourabie 2024</p>
+        <div class="links" id="links"></div>
+      </div>
+    </footer>
 
-    <script src="url.js"></script>
+    <script src="data.js"></script>
     <script src="script.js"></script>
-    <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
+    <script src="modules/js/glide.min.js"></script>
     <script>
       new Glide(".glide", {
         focusAt: "center",

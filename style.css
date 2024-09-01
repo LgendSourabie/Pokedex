@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
-
 @font-face {
   font-family: "zabras";
   src: url("fonts/zabars/ZABARS/Zabars.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
@@ -15,9 +13,10 @@
   box-sizing: border-box;
 }
 
-html {
+/* html {
   font-size: 100%;
-} /*16px*/
+  min-height: 100vh;
+} */
 
 :root {
   /* colors */
@@ -69,7 +68,8 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  height: 100vh;
+  position: relative;
   background: silver;
 }
 .align-middle {
@@ -95,11 +95,24 @@ header {
   box-shadow: var(--shadow-1);
   padding: 1rem;
 }
+
+.html-overflow {
+  overflow: hidden;
+}
+
 .glide__slide {
-  display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 630px !important;
+  display: none;
+  position: relative;
+  background: #483867;
+  border-radius: 2.5rem;
+  z-index: 999;
+}
+.glide__arrows {
+  display: none;
+  z-index: 999;
 }
 
 .d-none {
@@ -129,7 +142,7 @@ header {
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1rem;
+  gap: 3rem;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1170px;
@@ -168,7 +181,7 @@ section {
   padding-inline: 1rem;
 }
 
-a {
+a:not(.removeBorder) {
   text-decoration: none;
   border: 2px solid;
   border-radius: 30px;
@@ -184,9 +197,35 @@ input {
 }
 
 ul img {
-  width: 250px;
-  position: absolute;
-  top: -10px;
+  width: 175px;
+  object-fit: cover;
+}
+.pokemon-characteristics {
+  display: flex;
+  gap: 1rem;
+}
+
+.performance-label {
+  font-family: "komika";
+  font-size: 18px;
+  color: darkgoldenrod;
+}
+
+#height,
+#weight,
+#abilities,
+#types {
+  font-family: "komika";
+  font-weight: 300;
+  color: whitesmoke;
+}
+
+.top-section-info {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem 5rem 0 5rem;
 }
 
 button.info-btn {
@@ -204,96 +243,110 @@ button.info-btn {
   bottom: -38px;
 }
 .glide {
+  top: 3rem;
   background: brown;
   position: absolute !important;
-  top: 20vh;
   width: 90% !important;
   max-width: 760px !important;
   margin: 0 auto;
   border-radius: 40px;
+  z-index: 999;
 }
-/*
 
-.link {
-  width: 20%;
-  text-decoration: none;
-  color: black;
-  background-color: rgba(0, 0, 0, 0.1);
+.btn-exit {
+  margin-right: unset !important;
+  display: none;
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  cursor: pointer;
+  background: transparent;
+  padding: 5px;
+  color: #fff;
+  z-index: 2;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.1);
+  text-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+  transition: opacity 150ms ease, border 300ms ease-in-out;
+  width: 40px !important;
+  aspect-ratio: 1 / 1;
+  z-index: 999;
+}
+.btn-exit:hover {
+  border-color: #fff;
+  opacity: 1;
+}
+
+.closeBtn {
+  filter: invert(1);
+  width: 20px;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.img-current-pokemon {
+  animation: animate-pokemon 2s ease-in-out infinite;
+}
+
+.links {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: transform 300ms ease-in-out;
-  position: relative;
+  gap: 3rem;
   align-items: center;
 }
 
-.link:hover {
-  transform: scale(1.05);
+.link-icon {
+  transition: all 250ms ease-in-out;
 }
 
-
-
-
-input {
-  padding-block: 0.8rem;
-  outline: none;
-  padding-left: 1rem;
-  width: 70%;
-}
-.search {
-  flex-grow: 1;
-}
-button {
-  padding-inline: 2rem;
-  padding-block: 0.5rem;
+.removeBorder {
   cursor: pointer;
-}
-.icon {
-  width: 1.5rem;
-  background-color: white;
+  transition: all 250ms ease-in-out;
 }
 
-.disp-flex {
+.removeBorder:hover .link-icon {
+  display: inline-block;
+  font-size: 50px;
+  transform: translateY(-20px);
+}
+
+.page-footer {
+  background-color: #413e3e;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  padding-inline: 1rem;
+  padding-block: 3rem;
+  margin-top: 3rem;
 }
-
-
-.content {
+.footer-container {
   display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-
-
-.infos:hover {
-  color: tomato;
-}
-
-.link:hover .infos {
-  background-color: rgb(39, 149, 39);
-}
-canvas {
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  height: 100px;
+  max-width: 1170px;
 }
 
-.stat {
-  font-family: Arial, Helvetica, sans-serif;
+.copyright {
+  color: #fff;
+  font-family: system-ui, "Open Sans";
+  font-size: 20px;
+}
+.overlay {
   position: absolute;
-  top: 0;
-  color: rgb(24, 23, 23);
-  font-weight: bold;
-  opacity: 0;
-  transition: transform 1s ease-in-out;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
 }
 
-.link:hover .stat {
-  opacity: 0.9;
-  transform: translateY(250%);
-} */
+@keyframes animate-pokemon {
+  from {
+    transform: scale(1) rotateX(0) rotateY(0);
+  }
+  to {
+    transform: scale(1.2) rotateX(30deg) rotateY(-5deg);
+  }
+}
 
 @media (width<800px) {
   .container {
@@ -302,7 +355,34 @@ canvas {
   h1 {
     font-size: 60px;
   }
+  .performance-label {
+    font-size: 14px;
+  }
+
+  #height,
+  #weight,
+  #abilities,
+  #types {
+    font-size: small;
+  }
 }
+
+@media (width<700px) {
+  .top-section-info {
+    padding: 2rem 2rem 0 2rem;
+  }
+}
+
+@media (width<600px) {
+  .top-section-info {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0rem 2rem 0 2rem;
+  }
+}
+
 @media (width<600px) {
   .container {
     grid-template-columns: 1fr 1fr 1fr;
@@ -311,17 +391,48 @@ canvas {
     font-size: 50px;
   }
 }
+
 @media (width<570px) {
   nav {
     flex-direction: column;
+    gap: 1rem;
   }
   header {
     box-shadow: unset;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
+  }
+  .links {
+    gap: 2rem;
   }
 }
 @media (width<500px) {
   .container {
     grid-template-columns: 1fr 1fr;
+  }
+  .footer-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+@media (width<435px) {
+  ul img {
+    width: 135px;
+  }
+  #height,
+  #weight,
+  #abilities,
+  #types {
+    font-size: 12px;
+  }
+}
+@media (width<380px) {
+  #myChart {
+    width: 250px !important;
+  }
+  .btn-exit {
+    width: 32px !important;
+  }
+  .closeBtn {
+    width: 15px;
   }
 }

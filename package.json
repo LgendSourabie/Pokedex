@@ -9,6 +9,7 @@
   "author": "Ibrahima Sourabie",
   "license": "ISC",
   "dependencies": {
-    "@glidejs/glide": "^3.6.0"
+    "@glidejs/glide": "^3.6.0",
+    "chart.js": "^4.4.4"
   }
 }
